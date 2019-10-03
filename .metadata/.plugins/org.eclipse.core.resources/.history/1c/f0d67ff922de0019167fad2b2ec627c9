@@ -1,0 +1,5 @@
+url=jdbc:mysql://localhost:3306/procurement?autoReconnect=true&useSSL=true
+driverName=com.mysql.jdbc.Driver
+username=root
+password=root
+queryFilePath=EmployeeQuery.xml

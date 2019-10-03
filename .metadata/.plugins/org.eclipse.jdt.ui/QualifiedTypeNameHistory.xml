@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.sun.xml.internal.fastinfoset.sax.Properties"/>
+<fullyQualifiedTypeName name="com.mvc.util.CommonUtil"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="java.util.logging.Level"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="java.util.logging.Logger"/>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="jdk.internal.org.xml.sax.SAXException"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="org.xml.sax.SAXException"/>
+<fullyQualifiedTypeName name="javax.xml.parsers.ParserConfigurationException"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="org.eclipse.jdt.internal.compiler.codegen.AnnotationContext"/>
+<fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.mvc.util.DBConnectionUtil"/>
+<fullyQualifiedTypeName name="com.mvc.service.ItemDAOInterface"/>
+<fullyQualifiedTypeName name="com.mvc.service.ItemDAO"/>
+<fullyQualifiedTypeName name="com.mvc.model.Item"/>
+<fullyQualifiedTypeName name="com.mvc.util.QueryUtil"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.mvc.util.CommonConstants"/>
+<fullyQualifiedTypeName name="com.mvc.model.Order"/>
+<fullyQualifiedTypeName name="com.mvc.service.OrderDAO"/>
+<fullyQualifiedTypeName name="com.mvc.service.OrderDAOInterface"/>
+<fullyQualifiedTypeName name="com.mvc.model.Login"/>
+<fullyQualifiedTypeName name="com.mvc.service.LoginDAO"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,9 @@
+package com.mvc.test;
+
+import org.testng.annotations.Test;
+
+public class LoginDAOTest {
+  @Test
+  public void f() {
+  }
+}

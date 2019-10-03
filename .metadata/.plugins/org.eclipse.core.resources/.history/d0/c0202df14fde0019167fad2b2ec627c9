@@ -1,0 +1,12 @@
+package com.mvc.util;
+
+/**This is the query file for Java Web project*/
+
+public class QueryUtil {
+	
+	/** Query for login */
+	public static final String LOGIN_USER = "select userName,passWord from register";
+	
+	
+
+}

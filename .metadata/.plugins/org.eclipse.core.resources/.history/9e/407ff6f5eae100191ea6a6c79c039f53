@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Place an Order</title>
+<script>
+	function validate() {
+		var itemid = document.form.itemid.value;
+		var itemname = document.form.itemname.value;
+		var type = document.form.type.value;
+		var quantity = document.form.quantity.value;
+		var unitprice = document.form.unitprice.value;
+		var supplierid = document.form.supplierid.value;
+		var date = document.form.date.value;
+
+		if (itemid == null || itemid == "") {
+			alert("Item ID can't be blank");
+			return false;
+		} else if (itemname == null || itemname == "") {
+			alert("item Name can't be blank");
+		} else if (type == null || type == "") {
+			alert("Item Type can't be blank");
+			return false;
+		} else if (quantity == null || quantity == "") {
+			alert("Quantity can't be blank");
+			return false;
+		} else if (unitprice == null || unitprice == "") {
+			alert("Unit Price can't be blank");
+			return false;
+		} else if (supplierid == null || supplierid == "") {
+			alert("Supplier ID can't be blank");
+			return false;
+		} else if (date == null || date == "") {
+			alert("Date can't be blank");
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

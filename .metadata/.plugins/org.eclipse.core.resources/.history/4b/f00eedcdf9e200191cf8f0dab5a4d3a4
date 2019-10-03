@@ -1,0 +1,72 @@
+package com.mvc.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.mvc.model.Item;
+import com.mvc.service.ItemDAO;
+import com.mvc.service.ItemDAOInterface;
+
+/**
+ * Servlet implementation class ListItemServlet
+ */
+@WebServlet("/ListItemServlet")
+public class ListItemServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ListItemServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		out.println("<a href='AddItem.jsp'>Add New Item</a>");
+		out.println("<h1>Item List</h1>");
+		
+		ItemDAOInterface itemDAOInterface = new ItemDAO();
+		List<Item> list = itemDAOInterface.getAllItems();
+
+		out.print("<table border='1' width='100%'");
+		out.print(
+				"<tr><th>Item ID</th><th>Item Name</th><th>Type</th><th>Quantity</th><th>Unit Price</th><th>Supplier ID</th><th>Date</th><th>Edit</th><th>Delete</th></tr>");
+
+		for (Item item : list) {
+			out.print("<tr><td>" + item.getItemID() + "</td><td>" + item.getItemName() + "</td><td>" + item.getType()
+					+ "</td><td>" + item.getQuantity() + "</td><td>" + item.getUnitPrice() + "</td><td>"
+					+ item.getSupplierID() + "</td><td>" + item.getDate()
+					+ "</td><td><a href='UpdateItemServlet?itemid=" + item.getItemID()
+					+ "'>edit</a></td><td><a href='DeleteItemServlet?itemid=" + item.getItemID()
+					+ "'>delete</a></td></tr>");
+		}
+		out.print("</table>");
+
+		out.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

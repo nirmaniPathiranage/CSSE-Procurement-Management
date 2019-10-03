@@ -1,0 +1,56 @@
+package com.mvc.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.mvc.model.Register;
+import com.mvc.util.CommonConstants;
+import com.mvc.util.DBConnectionUtil;
+import com.mvc.util.QueryUtil;
+
+public class RegisterDAO {
+
+	/** Initialize logger */
+	public static final Logger logger = Logger.getLogger(RegisterDAO.class.getName());
+
+	public String registerUser(Register reg) {
+
+		String userName = reg.getUserName();
+		String passWord = reg.getPassWord();
+		String fullName = reg.getFullName();
+		String NICno = reg.getNICno();
+		String emailAddress = reg.getEmailAddress();
+		String streetAddress = reg.getStreetAddress();
+		String contactNo = reg.getContactNo();
+		String regDate = reg.getRegDate();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = DBConnectionUtil.createConnection();
+
+			preparedStatement = connection.prepareStatement(QueryUtil.REGISTER_USER);
+
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, userName);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, passWord);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_THREE, fullName);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_FOUR, NICno);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, emailAddress);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_SIX, streetAddress);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_SEVEN, contactNo);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_EIGHT, regDate);
+
+			int i = preparedStatement.executeUpdate();
+			if (i != 0)
+				return "SUCCESS";
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+		return "Oops.. Something went wrong there..!";
+	}
+
+}

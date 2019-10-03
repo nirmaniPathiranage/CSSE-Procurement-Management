@@ -1,0 +1,115 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Items</title>
+<style>
+body{
+	
+	background:url('back1.png'); 
+	background-size: cover;
+}
+</style>
+<script>
+	function validate() {
+		var itemid = document.form.itemid.value;
+		var itemname = document.form.itemname.value;
+		var type = document.form.type.value;
+		var quantity = document.form.quantity.value;
+		var unitprice = document.form.unitprice.value;
+		var supplierid = document.form.supplierid.value;
+		var date = document.form.date.value;
+
+		if (itemid == null || itemid == "") {
+			alert("Item ID can't be blank");
+			return false;
+		} else if (itemname == null || itemname == "") {
+			alert("item Name can't be blank");
+			return false;
+		} else if (type == null || type == "") {
+			alert("Item Type can't be blank");
+			return false;
+		} else if (quantity == null || quantity == "") {
+			alert("Quantity can't be blank");
+			return false;
+		} else if (unitprice == null || unitprice == "") {
+			alert("Unit Price can't be blank");
+			return false;
+		} else if (supplierid == null || supplierid == "") {
+			alert("Supplier ID can't be blank");
+			return false;
+		} else if (date == null || date == "") {
+			alert("Date can't be blank");
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+<div style="width:800px; margin:0 auto;" >
+
+<center>
+		<h1>Add a New Item</h1>
+	</center>
+
+	<form name="form" action="AddItemServlet" method="post" onSubmit="return validate();">
+	
+	<center>
+			<table cellpadding="3" style="width: 50%">
+
+				<tr height="20">
+					<td><p style="font-size: larger">Item ID:</td>
+					<td><input type="text" name="itemid" placeholder="I001" autocomplete="off" required/></td>
+				</tr>
+				<tr height="20">
+					<td><p style="font-size: larger">Item Name:</td>
+					<td><input type="text" name="itemname"
+						placeholder="cement" autocomplete="off" required /></td>
+				</tr>
+				<tr height="20">
+					<td><p style="font-size: larger">Select Item Type:</td>
+					<td><input list="status" name="type" placeholder="choose item type"/></td>
+					<datalist id="status"> <select required>
+					<option>Raw Materials</option>
+					<option>Tools</option>
+					<option>Equipments</option>
+					<option>Vehicles</option>
+				</select> </datalist>
+				</tr>
+				<tr height="20">
+					<td><p style="font-size: larger">Quantity (kg/l):</td>
+					<td><input type="text" name="quantity" placeholder="1000" autocomplete="off" required/></td>
+				</tr>
+				<tr height="20">
+					<td><p style="font-size: larger">Unit Price (Rs.):</td>
+					<td><input type="text" name="unitprice"
+						placeholder="100" autocomplete="off" required/></td>
+				</tr>
+				<tr height="20">
+					<td><p style="font-size: larger">Supplier ID:</td>
+					<td><input type="text" name="supplierid"
+						placeholder="12" autocomplete="off" required/></td>
+				</tr>
+				<tr height="20">
+					<td><p style="font-size: larger">
+							Stock in Date:</td>
+					<td><input type="date" name="date"
+						placeholder="2019-09-30" autocomplete="off" required/></td>
+				</tr>
+				<br>
+				<table align="center">
+					<tr>
+						<td colspan="2"><input type="submit" value="Save Item" /></td>
+					</tr>
+				</table>
+			</table>
+			  
+		</center>
+	</form>
+	</div>  
+	<center><a href="ListItemServlet">View List of Items</a></center>
+	<br><br><br>
+</body>
+</html>

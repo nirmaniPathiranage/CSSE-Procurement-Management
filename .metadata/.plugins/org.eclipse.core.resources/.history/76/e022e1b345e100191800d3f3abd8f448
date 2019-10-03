@@ -1,0 +1,73 @@
+package com.mvc.model;
+
+/** This is the Item model class */
+
+public class Item {
+
+	private String itemID;
+
+	private String itemName;
+
+	private String description;
+
+	private double unitPrice;
+
+	private int supplier;
+
+	/** @return the itemid */
+	public String getItemID() {
+		return itemID;
+	}
+
+	/** @param itemid the itemid to set */
+	public void setItemID(String itemID) {
+		this.itemID = itemID;
+	}
+
+	/** @return the itemname */
+	public String getItemName() {
+		return itemName;
+	}
+
+	/** @param itemname the itemname to set */
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	/** @return the description */
+	public String getDescription() {
+		return description;
+	}
+
+	/** @param description the description to set */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/** @return the unitprice */
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+
+	/** @param unitprice the unitprice to set */
+	public void setUnitPrice(double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	/** @return the supplier */
+	public int getSupplier() {
+		return supplier;
+	}
+
+	/** @param supplier the supplier to set */
+	public void setSupplier(int supplier) {
+		this.supplier = supplier;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [itemID=" + itemID + ", itemName=" + itemName + ", description=" + description + ", unitPrice="
+				+ unitPrice + ", supplier=" + supplier + "]";
+	}
+
+}

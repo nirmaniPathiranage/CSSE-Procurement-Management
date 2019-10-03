@@ -1,0 +1,330 @@
+package com.mvc.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.mvc.model.Order;
+import com.mvc.util.CommonConstants;
+import com.mvc.util.DBConnectionUtil;
+import com.mvc.util.QueryUtil;
+
+/**
+ * Contract for the implementation of OrderDAO Service .
+ */
+
+public class OrderDAO implements OrderDAOInterface {
+
+	/** Initialize logger */
+	public static final Logger logger = Logger.getLogger(OrderDAO.class.getName());
+
+	private static Connection connection;
+
+	private PreparedStatement preparedStatement;
+
+	/**
+	 * Add set of orders for as a batch from the selected order List
+	 * 
+	 * @throws SQLException - Thrown when database access error occurs or this
+	 *                      method is called on a closed connection
+	 */
+
+	@Override
+	public int add(Order order) {
+
+		int status = 0;
+
+		try {
+
+			connection = DBConnectionUtil.createConnection();
+
+			/*
+			 * Query is available in QueryUtil.java file
+			 */
+			preparedStatement = connection.prepareStatement(QueryUtil.ADD_NEW_ORDER);
+
+			connection.setAutoCommit(false);
+
+			// Generate item IDs
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, order.getOrderID());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_TWO, order.getItemID());
+			preparedStatement.setDouble(CommonConstants.COLUMN_INDEX_THREE, order.getQuantity());
+			preparedStatement.setDouble(CommonConstants.COLUMN_INDEX_FOUR, order.getUnitPrice());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, order.getCompany());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_SIX, order.getOrderDate());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_SEVEN, order.getRequestedDate());
+
+			double totalCost = order.getQuantity() * order.getUnitPrice();
+			preparedStatement.setDouble(CommonConstants.COLUMN_INDEX_EIGHT, totalCost);
+
+				// Add order
+				status = preparedStatement.executeUpdate();
+
+			connection.commit();
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		} catch (Exception ex) {
+			logger.log(Level.SEVERE, ex.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		return status;
+	}
+
+	/**
+	 * Get the updated order
+	 * 
+	 * @return return the Order object
+	 * 
+	 * @throws SQLException - Thrown when database access error occurs or this
+	 *                      method is called on a closed connection
+	 */
+	@Override
+	public int update(Order order) {
+
+		int status = 0;
+
+		try {
+
+			connection = DBConnectionUtil.createConnection();
+
+			preparedStatement = connection.prepareStatement(QueryUtil.UPDATE_ORDER);
+
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, order.getItemID());
+			preparedStatement.setDouble(CommonConstants.COLUMN_INDEX_TWO, order.getQuantity());
+			preparedStatement.setDouble(CommonConstants.COLUMN_INDEX_THREE, order.getUnitPrice());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_FOUR, order.getCompany());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_FIVE, order.getOrderDate());
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_SIX, order.getRequestedDate());
+
+			double totalCost = order.getQuantity() * order.getUnitPrice();
+			preparedStatement.setDouble(CommonConstants.COLUMN_INDEX_SEVEN, totalCost);
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_EIGHT, order.getOrderID());
+
+			status = preparedStatement.executeUpdate();
+
+			connection.close();
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		} catch (Exception ex) {
+			logger.log(Level.SEVERE, ex.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+
+		return status;
+
+	}
+
+	/**
+	 * This method delete an order based on the provided ID
+	 * 
+	 * @param orderID - Delete order according to the filtered order details
+	 * @throws SQLException - Thrown when database access error occurs or this
+	 *                      method is called on a closed connection
+	 */
+	@Override
+	public int delete(String orderID) {
+
+		int status = 0;
+
+		// Before deleting check whether order ID is available
+		if (orderID != null && !orderID.isEmpty()) {
+
+			/*
+			 * Remove order query will be retrieved from QueryUtil.java
+			 */
+
+			try {
+
+				connection = DBConnectionUtil.createConnection();
+
+				preparedStatement = connection.prepareStatement(QueryUtil.DELETE_ORDER);
+
+				preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, orderID);
+
+				status = preparedStatement.executeUpdate();
+
+				connection.close();
+
+			} catch (SQLException e) {
+				logger.log(Level.SEVERE, e.getMessage());
+			} catch (Exception e) {
+				logger.log(Level.SEVERE, e.getMessage());
+			} finally {
+				/*
+				 * Close prepared statement and database connectivity at the end of transaction
+				 */
+				try {
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if (connection != null) {
+						connection.close();
+					}
+				} catch (SQLException e) {
+					log.log(Level.SEVERE, e.getMessage());
+				}
+			}
+
+		}
+		return status;
+
+	}
+
+	/**
+	 * Order details can be retrieved based on the provided order ID
+	 * 
+	 * @param orderID - Order details are filtered based on the ID
+	 * @throws SQLException - Thrown when database access error occurs or this
+	 *                      method is called on a closed connection
+	 */
+	@Override
+	public Order getOrderById(String orderID) {
+
+		Order order = new Order();
+
+		try {
+
+			connection = DBConnectionUtil.createConnection();
+
+			preparedStatement = connection.prepareStatement(QueryUtil.GET_ORDER_BY_ID);
+
+			preparedStatement.setString(CommonConstants.COLUMN_INDEX_ONE, orderID);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+
+				order.setOrderID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				order.setItemID(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				order.setQuantity(resultSet.getDouble(CommonConstants.COLUMN_INDEX_THREE));
+				order.setUnitPrice(resultSet.getDouble(CommonConstants.COLUMN_INDEX_FOUR));
+				order.setCompany(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
+				order.setOrderDate(resultSet.getString(CommonConstants.COLUMN_INDEX_SIX));
+				order.setRequestedDate(resultSet.getString(CommonConstants.COLUMN_INDEX_SEVEN));
+				order.setTotal(resultSet.getDouble(CommonConstants.COLUMN_INDEX_EIGHT));
+			}
+
+			connection.close();
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+
+		catch (Exception ex) {
+			logger.log(Level.SEVERE, ex.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+
+		return order;
+
+	}
+
+	/**
+	 * Get all list of orders
+	 * 
+	 * @return List<Order>
+	 * @throws SQLException - Thrown when database access error occurs or this
+	 *                      method is called on a closed connection
+	 */
+	@Override
+	public List<Order> getAllOrders() {
+
+		List<Order> list = new ArrayList<Order>();
+
+		try {
+
+			connection = DBConnectionUtil.createConnection();
+
+			preparedStatement = connection.prepareStatement(QueryUtil.GET_ALL_ORDERS);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+
+				Order order = new Order();
+
+				order.setOrderID(resultSet.getString(CommonConstants.COLUMN_INDEX_ONE));
+				order.setItemID(resultSet.getString(CommonConstants.COLUMN_INDEX_TWO));
+				order.setQuantity(resultSet.getDouble(CommonConstants.COLUMN_INDEX_THREE));
+				order.setUnitPrice(resultSet.getDouble(CommonConstants.COLUMN_INDEX_FOUR));
+				order.setCompany(resultSet.getString(CommonConstants.COLUMN_INDEX_FIVE));
+				order.setOrderDate(resultSet.getString(CommonConstants.COLUMN_INDEX_SIX));
+				order.setRequestedDate(resultSet.getString(CommonConstants.COLUMN_INDEX_SEVEN));
+				order.setTotal(resultSet.getDouble(CommonConstants.COLUMN_INDEX_EIGHT));
+
+				list.add(order);
+			}
+
+			connection.close();
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+
+		return list;
+
+	}
+
+}

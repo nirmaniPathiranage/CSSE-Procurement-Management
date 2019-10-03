@@ -1,0 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Login</title>
+<style>
+header{
+background-image: url(procurement.jpg);
+background-size: cover;
+border-radius:8px;
+height:700px;
+width:100%;
+opacity:1;
+}
+
+.topnav a{
+float:left;
+color:#f2f2f2;
+text-align:center;
+padding:14px 16px;
+text-decoration:none;
+font-size:17px;
+}
+
+.topnav a:hover{
+background-color:#ddd;
+color:black;
+}
+
+.topnav a.active{
+background-color:#4CAF50;
+color:black;
+}
+</style>
+<script>
+	function validate() {
+		var username = document.form.username.value;
+		var password = document.form.password.value;
+
+		if (username == null || username == "") {
+			alert("Username cannot be blank");
+			return false;
+		} else if (password == null || password == "") {
+			alert("Password cannot be blank");
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+<header>
+<div class = "topnav">
+<a class = "active"  href="HomePage.jsp">Home</a>
+			<a href="###">About Us</a>
+			<a href="###">Search</a>
+			<a href="###">Contact Us</a>
+			<font align:right>
+			<a href="Login.jsp">Login</a>
+			<a href="Register.jsp">Register</a>
+			</font>
+</div>
+</header>
+	<form name="form" action="LoginServlet" method="post"
+		onsubmit="return validate()">
+		<center>
+			<fieldset style="width: 500px">
+				<legend> Login for Procurement Staff</legend>
+				<table border="0" width="50%" cellpadding="5">
+					<tr>
+						<th colspan="2">Login Here</th>
+					</tr>
+					<tbody>
+						<tr>
+							<td>Username</td>
+							<td><input type="text" name="username" value="" autofocus
+								placeholder="Enter Username" autocomplete="off" required /></td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td><input type="password" name="password" value=""
+								placeholder="Enter Password" autocomplete="off" required /></td>
+						</tr>
+						<tr>
+							<td><span style="color: red"><%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%></span></td>
+						</tr>
+						<tr>
+							<td><input type="submit" value="Login"></input></td>
+							<td><input type="reset" value="Reset"></input></td>
+						</tr>
+						<tr>
+							<td colspan="2">Not Yet Registered !!! <a
+								href="Register.jsp">Register Here</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+		</center>
+	</form>
+	<footer><div align="center" style ="background-color:#808080">All Rights Reserved@Procurement RoomPalace Pvt Ltd year 2019</footer>
+</body>
+</html>

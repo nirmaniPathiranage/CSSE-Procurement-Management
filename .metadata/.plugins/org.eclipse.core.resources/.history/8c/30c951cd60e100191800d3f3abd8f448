@@ -1,0 +1,30 @@
+package com.mvc.util;
+
+/** This is the sql query file for Java Web project */
+
+public class QueryUtil {
+
+	/** Query for login */
+	public static final String LOGIN_USER = "select userName,passWord from register";
+
+	/** Query for register */
+	public static final String REGISTER_USER = "insert into register(id,userName,passWord,fullName,NICno,emailAddress,streetAddress,contactNo,regDate) values (NULL,?,?,?,?,?,?,?,?)";
+	
+	/** Query for add a new item */
+	public static final String ADD_NEW_ITEM = "insert into item(itemID, itemName, type, quantity, unitPrice, supplierID, date) values (?,?,?,?,?,?,?)";
+	
+	/** Query for update an item */
+	public static final String UPDATE_ITEM = "update item set itemName=?, type=?, quantity=?, unitPrice=?, supplierID=?, date=? where itemID=?";
+	
+	/** Query for delete an item */
+	public static final String DELETE_ITEM = "delete from item where itemID=?";
+	
+	/** Query for get an item by id */
+	public static final String GET_ITEM_BY_ID = "select * from item where itemID=?";
+	
+	
+	
+	
+	
+
+}

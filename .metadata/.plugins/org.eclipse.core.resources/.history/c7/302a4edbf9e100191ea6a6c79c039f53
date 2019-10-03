@@ -1,0 +1,39 @@
+package com.mvc.service;
+
+import java.util.List;
+
+import com.mvc.model.Order;
+
+public class OrderDAO implements OrderDAOInterface {
+
+	@Override
+	public int add(Order order) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Order order) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(String orderID) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Order getOrderById(String orderID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getAllOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

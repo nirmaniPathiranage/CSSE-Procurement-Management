@@ -1,0 +1,72 @@
+package com.mvc.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.mvc.model.Order;
+import com.mvc.service.OrderDAO;
+import com.mvc.service.OrderDAOInterface;
+
+/**
+ * Servlet implementation class ListOrderServlet
+ */
+@WebServlet("/ListOrderServlet")
+public class ListOrderServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ListOrderServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		out.println("<a href='PlaceOrder.jsp'>Place New Order</a>");
+		out.println("<h1>Order List</h1>");
+
+		OrderDAOInterface orderDAOInterface = new OrderDAO();
+		List<Order> list = orderDAOInterface.getAllOrders();
+
+		out.print("<table border='1' width='100%'");
+		out.print(
+				"<tr><th>Order ID</th><th>Item ID</th><th>Quantity(kg/l)</th><th>Unit Price(Rs.)</th><th>Requested Company</th><th>Current Date</th><th>Requested Date</th><th>Total Amount</th><th>Edit</th><th>Delete</th></tr>");
+
+		for (Order order : list) {
+			out.print("<tr><td>" + order.getOrderID() + "</td><td>" + order.getItemID() + "</td><td>"
+					+ order.getQuantity() + "</td><td>" + order.getUnitPrice() + "</td><td>" + order.getCompany()
+					+ "</td><td>" + order.getOrderDate() + "</td><td>" + order.getRequestedDate() + "</td><td>"
+					+ order.getTotal() + "</td><td><a href='UpdateOrderServlet?orderid=" + order.getOrderID()
+					+ "'>edit</a></td><td><a href='DeleteOrderServlet?orderid=" + order.getOrderID()
+					+ "'>delete</a></td></tr>");
+		}
+		out.print("</table>");
+
+		out.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

@@ -1,0 +1,19 @@
+package com.mvc.service;
+
+import java.util.List;
+
+import com.mvc.model.Item;
+
+public interface ItemDAOInterface {
+
+	public int add(Item item);
+
+	public int update(Item item);
+
+	public int delete(String itemID);
+
+	public Item getItemById(String itemID);
+
+	public List<Item> getAllItems();
+
+}

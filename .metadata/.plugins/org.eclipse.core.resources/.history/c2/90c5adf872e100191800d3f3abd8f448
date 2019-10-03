@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Items</title>
+</head>
+<body>
+${msg}
+<div style="width:800px; margin:0 auto;" >
+
+	<form name="form" action="AddItem" method="post" onSubmit="return formValidate();">
+
+	<table >
+		<tr>
+		<td> Enter item ID:</td>
+		<td> <input type="text" name="ItemID" placeholder="Insert Item ID" required > </td>
+		</tr>
+		<tr>
+		<td> Enter item name: </td>
+		<td> <input type="text" name="name" placeholder="Insert Item Name" required> </td>
+		</tr>
+		<tr>
+		<td> Select Item type: </td>
+		<td> <select name="type">
+								<option value="vegetables" >Vegetables</option>
+								<option value="fruits">Fruit</option>
+								<option value="Meat">Meat</option>
+								<option value="seafood">Sea-Food</option>
+								<option value="fish">Fish</option>
+			</select> </td>
+		</tr>
+		<tr>
+		<td> Enter the quantity(KG / L): </td>
+		<td> <input type="text" name="quantity" placeholder="Insert Quantity" required> </td>
+		</tr>
+		<tr>
+		<td> Enter the rate per unit: </td>
+		<td> <input type="text" name="unitPrice" placeholder="Insert Unit Price" required> </td>
+		</tr>
+		<tr>
+		<td> Enter Supplier ID: </td>
+		<td> <input type="text" name="supID" placeholder="Insert Supplier ID" required> </td>
+		</tr>
+		<tr>
+		<td> Enter the Stock In Date:</td> 
+		<td> <input type="Date" name="date" placeholder="Insert Stock In Date" required> </td>
+		</tr>
+		<tr >			
+		<td> <input type="submit"  value ="Add Item"> </td>	
+		<td><input type="reset" value="Reset" class="reset-button" /></td>
+		</tr>
+	</table>
+	</form>
+	</div>
+</body>
+</html>

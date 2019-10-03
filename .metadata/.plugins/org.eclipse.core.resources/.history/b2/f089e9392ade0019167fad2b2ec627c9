@@ -1,0 +1,38 @@
+package com.mvc.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+/** This is the Database connection creation class */
+
+public class DBConnectionUtil {
+
+	private static Connection connection;
+
+	// This works according to singleton pattern
+	private DBConnectionUtil() {
+	}
+
+	/**
+	 * Create Database connection for the given URL, Username and Password
+	 * 
+	 * @return Connection this returns SQL connection for MySql Database
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+
+	public static Connection createConnection() throws SQLException, ClassNotFoundException {
+
+		/**
+		 * This creates new connection objects when connection is closed or it is null
+		 */
+
+		if (connection == null || connection.isClosed()) {
+			
+					Class.forName(CommonConstants.DRIVER_NAME);
+				connection = DriverManager.getConnection(CommonConstants.URL, CommonConstants.USERNAME, CommonConstants.PASSWORD);
+		}
+		return connection;
+	}
+}

@@ -1,0 +1,55 @@
+package com.mvc.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.mvc.model.Register;
+import com.mvc.util.DBConnectionUtil;
+
+public class RegisterDAO {
+
+	/** Initialize logger */
+	public static final Logger logger = Logger.getLogger(RegisterDAO.class.getName());
+
+	public String registerUser(Register reg) {
+
+		String userName = reg.getUserName();
+		String passWord = reg.getPassWord();
+		String fullName = reg.getFullName();
+		String NICno = reg.getNICno();
+		String emailAddress = reg.getEmailAddress();
+		String streetAddress = reg.getStreetAddress();
+		String contactNo = reg.getContactNo();
+		String regDate = reg.getRegDate();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = DBConnectionUtil.createConnection();
+
+			String query = "insert into register(id,userName,passWord,fullName,NICno,emailAddress,streetAddress,contactNo,regDate) values (NULL,?,?,?,?,?,?,?,?)";
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, userName);
+			preparedStatement.setString(2, passWord);
+			preparedStatement.setString(3, fullName);
+			preparedStatement.setString(4, NICno);
+			preparedStatement.setString(5, emailAddress);
+			preparedStatement.setString(6, streetAddress);
+			preparedStatement.setString(7, contactNo);
+			preparedStatement.setString(8, regDate);
+
+			int i = preparedStatement.executeUpdate();
+			if (i != 0)
+				return "SUCCESS";
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+		return "Oops.. Something went wrong there..!";
+	}
+
+}

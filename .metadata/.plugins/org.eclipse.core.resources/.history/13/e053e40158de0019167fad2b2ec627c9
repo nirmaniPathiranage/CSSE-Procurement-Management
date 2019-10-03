@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+
+<body>
+
+<form name="form" action="LoginServlet" method="post">
+		<center>
+			<fieldset style="width: 500px">
+				<legend> Login for Admin</legend>
+				<table border="0" width="50%" cellpadding="5">
+					<tr>
+						<th colspan="2">Login Here</th>
+					</tr>
+					<tbody>
+						<tr>
+							<td>Username</td>
+							<td><input type="text" name="username" value="" autofocus
+								placeholder="Enter Username" autocomplete="off" required /></td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td><input type="password" name="password" value=""
+								placeholder="Enter Password" autocomplete="off" required /></td>
+						</tr>
+						<tr>
+							<td><span style="color: red"><%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%></span></td>
+						</tr>
+						<tr>
+							<td><input type="submit" value="Login"></input></td>
+							<td><input type="reset" value="Reset"></input></td>
+						</tr>
+						<tr>
+							<td colspan="2">Not Yet Registered !!! <a
+								href="Register.jsp">Register Here</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+		</center>
+	</form>
+</body>
+</html>

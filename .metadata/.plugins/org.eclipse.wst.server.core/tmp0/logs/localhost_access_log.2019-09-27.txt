@@ -1,0 +1,12 @@
+127.0.0.1 - - [27/Sep/2019:20:41:32 +0530] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:20:43:21 +0530] "GET /Item_Management/ HTTP/1.1" 404 1026
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:20:43:34 +0530] "GET /Item_Management/Login.jsp HTTP/1.1" 200 1623
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:20:43:41 +0530] "POST /Item_Management/LoginServlet HTTP/1.1" 200 1665
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:20:43:58 +0530] "POST /Item_Management/LoginServlet HTTP/1.1" 200 407
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:20:44:02 +0530] "GET /Item_Management/LogoutServlet HTTP/1.1" 200 1655
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:20:44:07 +0530] "GET /Item_Management/Register.jsp HTTP/1.1" 200 4929
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:20:44:28 +0530] "GET /Item_Management/Login.jsp HTTP/1.1" 200 1623
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:21:27:35 +0530] "GET /Item_Management/ HTTP/1.1" 404 1026
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:21:27:43 +0530] "GET /Item_Management/Login.jsp HTTP/1.1" 200 1623
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:21:27:57 +0530] "POST /Item_Management/LoginServlet HTTP/1.1" 200 480
+0:0:0:0:0:0:0:1 - - [27/Sep/2019:21:28:03 +0530] "GET /Item_Management/AddItem.jsp HTTP/1.1" 200 1643

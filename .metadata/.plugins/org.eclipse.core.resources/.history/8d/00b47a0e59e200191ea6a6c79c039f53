@@ -1,0 +1,60 @@
+package com.mvc.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.mvc.model.Item;
+import com.mvc.service.ItemDAO;
+
+public class ItemDAOTestCase {
+
+	private static ItemDAO itemDao;
+	private Item item;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		System.out.println("Before Class");
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		System.out.println("After Class");
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		System.out.println("Before");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("After");
+	}
+
+	@Test
+	public void testAddItem() {
+		System.out.println("Testing for Adding a new item");
+
+		try {
+			item = new Item();
+
+			item.setItemID("I001");
+			item.setItemName("cement");
+			item.setType("Raw Materials");
+			item.setQuantity(1000);
+			item.setUnitPrice(1000);
+			item.setSupplierID(1);
+			item.setDate("2019/09/30");
+
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		assertEquals("Successfully added an item to the table", 7, itemDao.add(item));
+	}
+
+}

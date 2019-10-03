@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Welcome Registration</title>
+<script>
+body{
+	
+	background:url('back.jpg'); 
+	background-size: cover;
+}
+</script>
+</head>
+<body>
+	<h2>
+		<center>
+			<font color="red">Registration is Successful!!!</font>
+		</center>
+	</h2>
+	<br>
+	<%
+		String userName = request.getParameter("username");
+		String passWord = request.getParameter("password");
+		String fullName = request.getParameter("fullname");
+		String NICno = request.getParameter("nicno");
+		String emailAddress = request.getParameter("emailaddress");
+		String streetAddress = request.getParameter("streetaddress");
+		String contactNo = request.getParameter("contactno");
+		String regDate = request.getParameter("regdate");
+	%>
+	<table id="nat" border="0" cellpadding="0" style:width="50%">
+		<tr height="0px">
+			<td><p style="font-size: larger">Set Username  : </td>
+			<td><%=userName%></td>
+		</tr>
+		<tr height="0px">
+			<td><p style="font-size: larger">Set Password  : </td>
+			<td><%=passWord%></td>
+		</tr>
+		<tr height="0px">
+			<td><p style="font-size: larger">Full Name  : </td>
+			<td><%=fullName%></td>
+		</tr>
+		<tr height="0px">
+			<td><p style="font-size: larger">NIC Number  : </td>
+			<td><%=NICno%></td>
+		</tr>
+		<tr height="0px">
+			<td><p style="font-size: larger">Email Address  : </td>
+			<td><%=emailAddress%></td>
+		</tr>
+		<tr height="0px">
+			<td><p style="font-size: larger">Street Address  : </td>
+			<td><%=streetAddress%></td>
+		</tr>
+		<tr height="0px">
+			<td><p style="font-size: larger">Contact Number  : </td>
+			<td><%=contactNo%></td>
+		</tr>
+		<tr height="0px">
+			<td><p style="font-size: larger">Registered Date  : </td>
+			<td><%=regDate%></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br> Please Login Here
+	<a href='Login.jsp'>Go to Login</a>
+</body>
+</html>

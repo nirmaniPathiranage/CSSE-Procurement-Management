@@ -1,0 +1,13 @@
+package com.mvc.util;
+
+/** This is the sql query file for Java Web project */
+
+public class QueryUtil {
+
+	/** Query for login */
+	public static final String LOGIN_USER = "select userName,passWord from register";
+
+	/** Query for register */
+	public static final String REGISTER_USER = "insert into register(id,userName,passWord,fullName,NICno,emailAddress,streetAddress,contactNo,regDate) values (NULL,?,?,?,?,?,?,?,?)";
+
+}
